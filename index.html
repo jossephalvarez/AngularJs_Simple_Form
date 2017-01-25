@@ -1,0 +1,98 @@
+<html>
+<head>
+    <title>Formulario para Datos Personales</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
+    <link href='custom.css' rel='stylesheet' type='text/css'>  
+
+    <!-- JS -->
+    <script src="https://code.angularjs.org/1.4.0-rc.1/angular.js"></script>   
+    <script src="validator.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="jumbotron">
+            <h1>Formulario de Registro</h1> 
+            <p>Registrate en un click.</p> 
+        </div>
+
+        <div class="row">
+
+            <div class="col-lg-8 col-lg-offset-2">
+                <h2>Especifica tus datos personales:</h2>  
+                <div ng-app="validation" ng-controller="mainController">
+                   <form name="userForm" novalidate>
+                    <!--FUNCIONA-->
+                    <div class="row">
+                        <!-- NOMBRE -->
+                        <div class="col-md-6">                    
+                            <div class="form-group" ng-class="{ 'has-error' : userForm.nombre.$invalid && !userForm.nombre.$pristine }">
+                                <label>Nombre*</label>
+                                <input type="text" id="nombre" name="nombre" class="form-control" ng-model="user.nombre" ng-maxlength="10" ng-minlengt="1" ng-click="resetForm()">          
+                                <p ng-show="userForm.nombre.$error.maxlength" class="help-block">Nombre no mayor de 10 caracteres</p>
+
+                            </div>
+                        </div>
+                        <!-- APELLIDO -->
+                        <div class="col-md-6">                    
+                            <div class="form-group" ng-class="{ 'has-error' : userForm.apellido.$invalid && !userForm.apellido.$pristine }">
+                                <label>Apellido*</label>
+                                <input type="text" id="apellido" name="apellido" class="form-control" ng-model="user.apellido" ng-maxlength="20" ng-click="resetForm()">              
+                                <p ng-show="userForm.apellido.$error.maxlength" class="help-block">Apellido no mayor de 20 caracteres</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                       <!-- TELEFONO -->
+                       <div class="col-md-6">                    
+                        <div class="form-group" ng-class="{ 'has-error' : userForm.tel.$invalid && !userForm.tel.$pristine }">
+                            <label>Teléfono</label>
+                            <input type="number" name="tel" class="form-control" ng-model="user.tel" ng-maxlength="9" ng-click="resetForm()">              
+                            <p ng-show="userForm.tel.$error.maxlength" class="help-block">Teléfono no mayor de 9 dígitos</p>
+                        </div>
+                    </div>                       
+                    <!-- EMAIL -->
+                    <div class="col-md-6">                    
+                        <div class="form-group" ng-class="{ 'has-error' : userForm.email.$invalid && !userForm.email.$pristine }">
+                            <label>Correo Electrónico*</label>
+                            <input type="email" id="email" name="email" class="form-control" ng-model="user.email" ng-click="resetForm()">                           
+                            <p ng-show="!checkEmail(user.email) &&userForm.email.$invalid && !userForm.email.$pristine" class="help-block">Introduzca un email válido.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <!-- SEXO -->
+                    <div class="col-md-6">
+                        <label for="form_email">Sexo</label>
+                        <select class="form-control" ng-click="resetForm()">                                     
+                           <option>Hombre</option>
+                           <option>Mujer</option>                                     
+                       </select>                                     
+                   </div>               
+               </div>
+               <br>    
+
+           </form> 
+           <div class="text-center"> 
+               <button type="button" class="btn btn-primary" ng-click="checkForm(user)">Guardar</button>
+           </div>  
+           <div class="row text-center" ng-show="alerts" id ="alerts" >
+            <h3 ng-show="!visible">El formulario no cumple alguna de las restricciones.</h3>
+            <h3 ng-show="visible">El formulario se ha relleando correctamente.</h3>
+        </div>        
+    </div>     
+
+
+</div><!-- /.8 -->
+
+</div> <!-- /.row-->
+
+</div> <!-- /.container-->        
+<script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>        
+</body>
+</html>

@@ -1,0 +1,21 @@
+/*Eliminamos flechas de los imput type number*/
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+/*Errores Css*/
+.error_vacio {
+    border-color: #a94442 !important;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset !important;
+}
+
+/*Alertas de validacion de formulario*/
+#alerts h3{
+	font-style: italic;
+	color: red;
+}
